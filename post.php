@@ -10,7 +10,7 @@
 <h1 style="text-align:center">Webboard KakKak</h1>
     <hr><center>
     <?php
-    $id= $_GET['id'];
+    isset($_GET['id']) ? $id= $_GET['id'] : header("Location: index.php");
     echo "<center>ต้องการดูกระทู้หมายเลข $id <br>";
     if($id % 2 == 0){
         echo "เป็นกระทู้หมายเลขคู่</center><br>";
@@ -24,6 +24,6 @@
     <tr><td><div style="text-align:center"><textarea type="text" name="comment" rows="5%" cols="65%" placeholder="แสดงความคิดเห็นได้ที่นี่......" autofocus></textarea></div></td></tr>
     <tr><td style="text-align:center"><input type="submit" value="ส่งข้อความ"></td></tr>    
 </table>
-<center><h3><a href="index.php">กลับไปหน้าหลัก</a></h3></center>
+<h3><a href="index.php">กลับไปหน้าหลัก</a></h3></center>
 </body>
 </html>

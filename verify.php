@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,21 +10,37 @@
     <title>Verify</title>
 </head>
 <body>
-    
+<?php
+if(isset($_SESSION["id"])){
+    header("Location: index.php");
+}
+?>
     <h1 style="text-align:center">Webboard KakKak</h1>
     <hr><center>
     
     <?php
-    $u = $_POST['username'];
-    $p = $_POST['password'];
+    isset($_POST['username']) ? $u = $_POST['username'] : $u = "";
+    isset($_POST['password']) ? $p = $_POST['password'] : $p = "";
     //echo "<center>Login = $u </center><br>";
     //echo "<center>Password = $p </center><br>";
     if($u=="admin"&&$p=="ad1234"){
         echo "<center>ยินดีต้อนรับคุณ " . strtoupper($u) ;
+        $_SESSION["username"] = $u;
+        $_SESSION["role"] = "a";
+        $_SESSION["id"] = session_id();
+        header("Location: index.php");
+
     }
     elseif($u=="member"&&$p=="mem1234"){
-        echo "<center>ยินดีต้อนรับคุณ " . strtoupper($u) ;        
+        echo "<center>ยินดีต้อนรับคุณ " . strtoupper($u) ; 
+        $_SESSION["username"] = $u;
+        $_SESSION["role"] = "m";
+        $_SESSION["id"] = session_id();
+        header("Location: index.php");       
         
+    }
+    elseif($u==""&&$p==""){
+        echo "<center>ไม่พบชื่อบัญชีหรือรหัสผ่าน"; 
     }
     else{
         echo "<center>ชื่อบัญชีหรือรหัสผ่านไม่ถูกต้อง"; 
