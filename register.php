@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +10,11 @@
     <title>Register Page</title>
 </head>
 <body>
+<?php
+if(isset($_SESSION["id"])){
+    header("Location: index.php");
+}
+?>
     <h1 style="text-align:center">สมัครสมาชิก</h1>
     <hr>
     <center>
@@ -24,12 +32,12 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="f"> หญิง <br>
                 &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="e"> อื่นๆ <br></td></tr>
         <tr><td>
-                    อีเมลล์ : </td><td><div style="float:right"><input type="text" size="40%" name="email" required></div></td></tr>
+                    อีเมลล์ : </td><td><div style="float:right"><input type="email" size="40%" name="email" required></div></td></tr>
         <tr><td style="text-align:center" colspan="2"><input type="submit" value="สมัครสมาชิก"></td></tr>
         </form>
 
     </table>
-    <h3><a href="index.html">กลับไปหน้าหลัก</a></h3>
+    <h3><a href="index.php">กลับไปหน้าหลัก</a></h3>
 </center>
 </body>
 </html>
