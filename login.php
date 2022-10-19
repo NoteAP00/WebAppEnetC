@@ -25,11 +25,20 @@ if(isset($_SESSION["id"])){
 ?>
     <h1 style="text-align:center">Webboard KakKak</h1>
     <?php
-        include "nav.php"; 
-    ?><!-- เรียก navbar จากที่อื่นมาใช้ ง่ายต่อการเรียนใช้ในหลายๆไฟล์ -->
+        include "nav.php";
+    ?><!-- เรียก navbar จากที่อื่นมาใช้ ง่ายต่อการเรียนใช้ในหลายๆไฟล์ --> 
+<section class="col-md-5 mx-auto">
+    <?php    if(isset($_SESSION["error"]) && $_SESSION["error"] == "err1"){
+            echo "<div style=\"max-width: 18rem;\" class=\"alert alert-danger m-3\" role=\"alert\">";
+            echo "ชื่อบัญชีหรือรหัสผ่านไม่ถูกต้อง";
+            echo "</div>";
+            unset($_SESSION["error"]);
+        }
+    ?>
 
-    <center>
+    
     <form action="verify.php" method="post" >
+    <!--
     <table style="border: 2px solid black; width:40% ;">
         <tr><th style="background-color: #6CD2FE; text-align: left;" colspan="2">เข้าสู่ระบบ</th>
         <tr><td>
@@ -40,10 +49,21 @@ if(isset($_SESSION["id"])){
                  <input type="password" size="40%" name="password" required></div></td></tr>
         <tr><td style="text-align:center" colspan="2"><input type="submit" value="login"></td></tr>
         
-</table>    
+    </table>  
+    -->
+    <div class="card text-bg-light m-3" style="max-width: 18rem;">
+        <div class="card-header">เข้าสู่ระบบ</div>
+        <div class="card-body d-grid gap-2">
+            <label for="username" class="form-label mb-1">Login :</label>
+            <input type="text" class="form-control"  name="username" required>
+            <label for="password" class="form-label mb-1">Password :</label>
+            <input type="password" class="form-control"  name="password" required>
+            <input type="submit" value="login" class="btn btn-secondary gap-2 col-md-5 mx-auto" style="max-width: 25%;">
+        </div>
+    </div>
 </form>
-    <h3>ถ้ายังไม่ได้เป็นสมาชิก <a href="register.php">กรุณาสมัครสมาชิก</a></h3>
-</center>
+    <p>ถ้ายังไม่ได้เป็นสมาชิก <a href="register.php">กรุณาสมัครสมาชิก</a></p>
+</section>
 </div>
 </body>
 </html>

@@ -46,11 +46,11 @@ if(isset($_SESSION["id"])){
         header("Location: index.php");       
         
     }
-    elseif($u==""&&$p==""){
-        //echo "<center>ไม่พบชื่อบัญชีหรือรหัสผ่าน"; 
-    }
+    
     else{
         //echo "<center>ชื่อบัญชีหรือรหัสผ่านไม่ถูกต้อง"; 
+        $_SESSION["error"] = "err1";
+        header("Location: login.php"); 
     } 
     
     ?>

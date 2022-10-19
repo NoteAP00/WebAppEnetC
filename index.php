@@ -89,10 +89,10 @@ session_start();
     -->
   <br>
   <div class="d-flex">
-        <div>
-            <label>หมวดหมู่</label>
+        <div class="w-100">
+            <label class="form-lable">หมวดหมู่</label>
             <span class="dropdown">
-                <button class="btn btn-light dropdown-toggle btn-sm"
+                <button class="btn btn-light dropdown-toggle btn-sm "
                         type="button" id="button2" data-bs-toggle="dropdown"\
                         aria-expanded="false">
                         --ทั้งหมด--
@@ -104,18 +104,23 @@ session_start();
                 </ul>
             </span>
         </div>
-        <div>
+        <div class="flex-shrink-0">
             <a  class="btn btn-success bi bi-plus" href="newpost.php">สร้างกระทู้ใหม่</a>
         </div>
+    
   </div> 
         
         
   <br>
-  <table class="table table-striped">
+  <table class="table table-striped ">
 
         <?php
         for($i=1;$i<=10;$i++){ 
             echo "<tr><td><a href=\"post.php?id=$i\" style=text-decoration:none>กระทู้ที่ $i</a>";
+            if($_SESSION["role"] == "a"){
+                echo "</td><td><a href=\"delete.php?id=$i\" class=\"btn btn-danger bi bi-trash\"></a>";
+                echo "</td></tr>";
+            }
         }?>
 </table>    
 </div>
