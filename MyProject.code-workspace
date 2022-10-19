@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "F:/MyProject"
+		},
+		{
+			"path": "F:/GitClone"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "F:/bootstrap"
+		},
+		{
+			"path": "../Lab_exam"
+		},
+		{
+			"path": "F:/bootstrap/work"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "bootstrap"
+	}
+}
