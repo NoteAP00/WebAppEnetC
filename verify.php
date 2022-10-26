@@ -2,7 +2,7 @@
 session_start();
 
 if(isset($_SESSION["username"]) && $_SESSION["id"]==session_id()){
-    header("Location: index.php");
+    header("Location: login.php");
     die();
 }
 
@@ -17,11 +17,11 @@ if(isset($_SESSION["username"]) && $_SESSION["id"]==session_id()){
         $_SESSION["role"] = $data["role"];
         $_SESSION["user_id"] = $data["id"];
         $_SESSION["id"] = session_id();
-        header("Location: index.php");       
+        header("Location: login.php");       
         die();
     }else{
         $_SESSION["error"] = 1;
-        header("Location: index.php");       
+        header("Location: login.php");       
         die();
     }
     $conn=null;
