@@ -27,14 +27,10 @@ if(isset($_SESSION["id"])){
     <?php
         include "nav.php";
     ?><!-- เรียก navbar จากที่อื่นมาใช้ ง่ายต่อการเรียนใช้ในหลายๆไฟล์ --> 
-<section class="col-md-5 mx-auto">
-    <?php    if(isset($_SESSION["error"]) && $_SESSION["error"] == "err1"){
-            echo "<div style=\"max-width: 18rem;\" class=\"alert alert-danger m-3\" role=\"alert\">";
-            echo "ชื่อบัญชีหรือรหัสผ่านไม่ถูกต้อง";
-            echo "</div>";
-            unset($_SESSION["error"]);
-        }
-    ?>
+
+    
+
+    
 
     
     <form action="verify.php" method="post" >
@@ -51,19 +47,50 @@ if(isset($_SESSION["id"])){
         
     </table>  
     -->
-    <div class="card text-bg-light m-3" style="max-width: 18rem;">
-        <div class="card-header">เข้าสู่ระบบ</div>
-        <div class="card-body d-grid gap-2">
-            <label for="username" class="form-label mb-1">Login :</label>
-            <input type="text" class="form-control"  name="username" required>
-            <label for="password" class="form-label mb-1">Password :</label>
-            <input type="password" class="form-control"  name="password" required>
-            <input type="submit" value="login" class="btn btn-secondary gap-2 col-md-5 mx-auto" style="max-width: 25%;">
+   <?php
+        if(isset($_SESSION["error"]) && $_SESSION["error"] == "err1"){
+   ?>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <?php   
+                        echo "<div class=\"alert alert-danger bi bi-exclamation-triangle\" role=\"alert\">";
+                        echo "  ชื่อบัญชีหรือรหัสผ่านไม่ถูกต้อง";
+                        echo "</div>";
+                        unset($_SESSION["error"]);
+                    
+            ?>
         </div>
+        <div class="col-md-4"></div>
+    </div>
+    <?php
+        }
+    ?>
+
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <div class="card text-dark bg-light" >
+                <div class="card-header ">เข้าสู่ระบบ</div>
+                <div class="card-body">
+                    <div class="form-group mb-2">
+                        <label class="form-label">Login :</label>
+                        <input type="text" class="form-control" name="username" required>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="form-label">Password :</label>
+                        <input type="password" class="form-control"  name="password" required>
+                    </div>    
+                    <center><button type="submit"  class="btn btn-secondary btn-sm">Login</button></center>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
     </div>
 </form>
-    <p>ถ้ายังไม่ได้เป็นสมาชิก <a href="register.php">กรุณาสมัครสมาชิก</a></p>
-</section>
+        <div class="mt-4" align="center">ถ้ายังไม่ได้เป็นสมาชิก <a href="register.php">กรุณาสมัครสมาชิก</a></div>
+
 </div>
 </body>
 </html>

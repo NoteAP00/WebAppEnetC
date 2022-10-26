@@ -17,19 +17,27 @@ session_start();
     <title>Newpost</title>
 </head>
 <body>
+<div class="container"><!-- ทั้งหน้าจะมีการเว้นซ้ายขวา -->
+    <h1 style="text-align:center">Webboard KakKak</h1>
+    
+    <?php
+        include "nav.php"; 
+    ?>
 
-<h1 style="text-align:center">Webboard KakKak</h1>
-    <hr><center>
+<!-- Old_version
 <table style="border: 2px solid black; width:40% ;">
 <tr><th style="background-color: #6CD2FE; text-align: left;" colspan="2">สร้างโพสต์ใหม่</th></tr>
 <tr><td>ผู้ใช้ : </td><td><div style="float:left"> 
+-->
 <?php
 if(!isset($_SESSION["id"])){
     header("Location: index.php");
 }
-echo  $_SESSION["username"] . "</div></td></tr>";
+//echo  $_SESSION["username"] . "</div></td></tr>";
 
 ?>
+
+<!-- Old_version
 <tr><td>หมวดหมู่ : </td><td><div style="float:left"><select name="หมวดหมู่" >
             <option value="1">เรื่องทั่วไป</option>
             <option value="2">เรื่องร้องเรียน</option>
@@ -39,5 +47,52 @@ echo  $_SESSION["username"] . "</div></td></tr>";
 <tr><td></td><td><div style="text-align:center"><input type="submit" value="บันทึกข้อความ"></div></td></tr>
 </table>
 <h3><a href="index.php">กลับไปหน้าหลัก</a></h3></center>
+-->
+<section class="col-md-5 mx-auto">
+<div class="card text-dark bg-white border-info">
+    <div class="card-header bg-info text-ehite">
+        ตั้งกระทู้ใหม่        
+    </div>
+    <div class="card-body">
+        <form action="newpost_save.php" method="post">
+            <div class="row mb-3">
+                <label class="col-lg-3 col-form-label">
+                    หมวดหมู่ :
+                </label>
+                <div class="col-lg-9">
+                    <select name="category" class="form-select">
+                        <option value="general">เรื่องทั่วไป</option>
+                        <option value="study">เรื่องร้องเรียน</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-lg-3 col-form-lable">หัวข้อ :</label>
+                <div class="col-lg-9">
+                    <input type="text" name="topic" class="form-control" require>
+                </div>                
+            </div>
+            <div class="row mb-3">                
+            <label class="col-lg-3 col-form-lable">เนื้อหา :</label>
+                <div class="col-lg-9">
+                    <textarea name="comment" class="form-control" rows="8" require></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <center>
+                        <button type="submit" class="btn btn-info btn-sm text-white">
+                            <i class="bi bi-caret-right-square me-1"></i>
+                            บันทึกข้อความ
+                        </button>
+                    </center>
+                </div>
+            </div>
+        </form>        
+    </div>
+</div>
+</div>
+</section>
+</div>
 </body>
 </html>

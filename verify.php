@@ -22,8 +22,7 @@ if(isset($_SESSION["id"])){
     header("Location: index.php");
 }
 ?>
-    <h1 style="text-align:center">Webboard KakKak</h1>
-    <hr><center>
+    
     
     <?php
     isset($_POST['username']) ? $u = $_POST['username'] : $u = "";
@@ -36,7 +35,7 @@ if(isset($_SESSION["id"])){
         $_SESSION["role"] = "a";
         $_SESSION["id"] = session_id();
         header("Location: index.php");
-
+        die();
     }
     elseif($u=="member"&&$p=="mem1234"){
         //echo "<center>ยินดีต้อนรับคุณ " . strtoupper($u) ; 
@@ -44,17 +43,18 @@ if(isset($_SESSION["id"])){
         $_SESSION["role"] = "m";
         $_SESSION["id"] = session_id();
         header("Location: index.php");       
-        
+        die();
     }
     
     else{
         //echo "<center>ชื่อบัญชีหรือรหัสผ่านไม่ถูกต้อง"; 
         $_SESSION["error"] = "err1";
-        header("Location: login.php"); 
+        header("Location: login.php");
+        die(); 
     } 
     
     ?>
-    <h3><a href="index.php">กลับไปหน้าหลัก</a></h3></center>
+    
 </body>
 </html>
 

@@ -17,7 +17,7 @@ session_start();
     <title>Homepage</title>
 </head>
 <?php
-    if(!isset($_SESSION["id"])){
+    if(!isset($_SESSION["id"])){ //ไม่ได้login
         
     ?>
 <body>
