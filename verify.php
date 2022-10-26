@@ -1,35 +1,39 @@
 <?php
 session_start();
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verify</title>
-     <!-- CSS only -->
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <!--Icon-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    
-</head>
-<body>
-<?php
-if(isset($_SESSION["id"])){
+
+if(isset($_SESSION["username"]) && $_SESSION["id"]==session_id()){
     header("Location: index.php");
+    die();
 }
-?>
-    
-    
-    <?php
+
     isset($_POST['username']) ? $u = $_POST['username'] : $u = "";
     isset($_POST['password']) ? $p = $_POST['password'] : $p = "";
+    $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+    $sql = "SELECT * FROM user where login='$u' and password = sha1('$p')";
+    $result = $conn->query($sql);
+    if($result->rowCount()==1){
+        $data=$result->fetch(PDO::FETCH_ASSOC);
+        $_SESSION["username"] = $data["login"];
+        $_SESSION["role"] = $data["role"];
+        $_SESSION["user_id"] = $data["id"];
+        $_SESSION["id"] = session_id();
+        header("Location: index.php");       
+        die();
+    }else{
+        $_SESSION["error"] = 1;
+        header("Location: index.php");       
+        die();
+    }
+    $conn=null;
+
+
+
+
+
+
     //echo "<center>Login = $u </center><br>";
     //echo "<center>Password = $p </center><br>";
-    if($u=="admin"&&$p=="ad1234"){
+    /*if($u=="admin"&&$p=="ad1234"){
         //echo "<center>ยินดีต้อนรับคุณ " . strtoupper($u) ;
         $_SESSION["username"] = $u;
         $_SESSION["role"] = "a";
@@ -51,11 +55,9 @@ if(isset($_SESSION["id"])){
         $_SESSION["error"] = "err1";
         header("Location: login.php");
         die(); 
-    } 
+    } */
     
     ?>
-    
-</body>
-</html>
+
 
 

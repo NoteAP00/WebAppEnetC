@@ -22,22 +22,23 @@ if(isset($_SESSION["id"])){
     header("Location: index.php");
 }
 ?>
+<!--
     <h1 style="text-align:center">สมัครสมาชิก</h1>
     <hr>
     <center>
         <table style="border: 2px solid black; width:40% ;">
         <tr><th style="background-color: #6CD2FE; text-align: left;" colspan="2">กรอกข้อมูล</th></tr>
-        <tr><td><form action="" >
-            ชื่อบัญชี : </td><td><div style="float:right"><input type="text" size="40%" name="username" required></div></td></tr>
+        <tr><td><form action="register_save.php" method="post" >
+            ชื่อบัญชี : </td><td><div style="float:right"><input type="text" size="40%" name="login" required></div></td></tr>
         <tr><td>
-            รหัสผ่าน : </td><td><div style="float:right"><input type="password" size="40%" name="password" required></div></td></tr>
+            รหัสผ่าน : </td><td><div style="float:right"><input type="password" size="40%" name="pwd" required></div></td></tr>
         <tr><td>
-            ชื่อ-นามสกุล : </td><td><div style="float:right"><input type="text" size="40%" name="namesur" required></div></td></tr>
+            ชื่อ-นามสกุล : </td><td><div style="float:right"><input type="text" size="40%" name="name" required></div></td></tr>
         <tr><td>
             เพศ :   </td><td>
                 &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="m" required> ชาย <br>
                 &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="f"> หญิง <br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="e"> อื่นๆ <br></td></tr>
+                &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="o"> อื่นๆ <br></td></tr>
         <tr><td>
                     อีเมลล์ : </td><td><div style="float:right"><input type="email" size="40%" name="email" required></div></td></tr>
         <tr><td style="text-align:center" colspan="2"><input type="submit" value="สมัครสมาชิก"></td></tr>
@@ -46,5 +47,71 @@ if(isset($_SESSION["id"])){
     </table>
     <h3><a href="index.php">กลับไปหน้าหลัก</a></h3>
 </center>
+-->
+<div class="container">
+<h1 style="text-align:center">Webboard KakKak</h1>
+    <?php
+        include "nav.php";
+    ?><!-- เรียก navbar จากที่อื่นมาใช้ ง่ายต่อการเรียนใช้ในหลายๆไฟล์ --> 
+
+    <form action="register_save.php" method="post" >
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+            <div class="card text-dark bg-white border-primary" >
+                <div class="card-header bg-primary text-white ">กรอกข้อมูล</div>
+                <div class="card-body">
+                    <div class="row mb-3 ">
+                        <label class="col-md-3 col-form-label">ชื่อบัญชี :</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="login" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-md-3 col-form-label">รหัสผ่าน :</label>
+                        <div class="col-md-9">
+                            <input type="password" class="form-control"  name="pwd" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-md-3 col-form-label">ชื่อ-นามสกุล :</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control"  name="name" require>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-md-3 col-form-label pt-0">เพศ :</label>
+                        <div class="col-md-9">
+                            <input class="form-check-input" type="radio" id="flexRadioDefault1" name="gender" value="m" required>
+                            <label class="form-check-label" for="flexRadioDefault1"> ชาย </label><br>
+                            <input class="form-check-input" type="radio" id="flexRadioDefault2" name="gender" value="f" >
+                            <label class="form-check-label" for="flexRadioDefault2"> หญิง </label><br>
+                            <input class="form-check-input" type="radio" id="flexRadioDefault3"name="gender" value="o" >
+                            <label class="form-check-label" for="flexRadioDefault3"> อื่นๆ </label><br>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-md-3 col-form-label">อีเมลล์ :</label>
+                        <div class="col-md-9">
+                            <input type="email" class="form-control"  name="email" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-md-3 col-form-label"></label>
+                        <div class="col-md-9">
+                            <button type="submit"  class="btn btn-primary btn-sm bi bi-save"> สมัครสมาชิก</button>
+                        </div>
+                    </div>    
+                </div>    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</form>
+        
+
+</div>
 </body>
 </html>
