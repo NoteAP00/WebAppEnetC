@@ -28,7 +28,11 @@ if(isset($_SESSION["id"])){
         include "nav.php";
     ?><!-- เรียก navbar จากที่อื่นมาใช้ ง่ายต่อการเรียนใช้ในหลายๆไฟล์ --> 
 
-    
+    <!--
+        user 1 :
+        user : Apinun
+        pass : $passwd
+    -->
 
     
 
