@@ -9,7 +9,7 @@ if(isset($_SESSION["username"]) && $_SESSION["id"]==session_id()){
     isset($_POST['username']) ? $u = $_POST['username'] : $u = "";
     isset($_POST['password']) ? $p = $_POST['password'] : $p = "";
     $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
-    $sql = "SELECT * FROM user where login='$u' and password = sha1('$p')";
+    $sql = "SELECT * FROM user where login='$u' and password = sha1('$p') ";
     $result = $conn->query($sql);
     if($result->rowCount()==1){
         $data=$result->fetch(PDO::FETCH_ASSOC);

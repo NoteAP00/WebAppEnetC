@@ -55,6 +55,34 @@ if(isset($_SESSION["id"])){
     ?><!-- เรียก navbar จากที่อื่นมาใช้ ง่ายต่อการเรียนใช้ในหลายๆไฟล์ --> 
 
     <form action="register_save.php" method="post" >
+        
+    <?php
+        if(isset($_SESSION["add_login"])){
+   ?>
+    <div class="row mt-3">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <?php   
+                if($_SESSION["add_login"] == 'error'){
+                        echo "<div class=\"alert alert-danger bi bi-x-circle\" role=\"alert\">";
+                        echo "  ชื่อบัญชีซ้ำหรือฐานข้อมูลมีปัญหา";
+                        echo "</div>";
+                        unset($_SESSION["add_login"]);
+                    }
+                else if($_SESSION["add_login"] == 'success'){   
+                        echo "<div class=\"alert alert-success bi bi-check-circle\" role=\"alert\">";
+                        echo "  เพิ่มบัญชีเรียบร้อยแล้ว";
+                        echo "</div>";
+                        unset($_SESSION["add_login"]);
+                }
+            ?>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <?php
+        }
+    ?>
+
     <div class="row">
         <div class="col-md-3">
         </div>
