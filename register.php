@@ -15,6 +15,24 @@ session_start();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     
     <title>Register Page</title>
+
+    <script >
+        function password_show_hide(){
+            let x = document.getElementById("password");
+            let show_eye = document.getElementById("show_eye");
+            let hide_eye = document.getElementById("hide_eye");
+            hide_eye.classList.remove("d-none");
+            if(x.type ==="password"){
+                x.type="text";
+                show_eye.style.display="none";
+                hide_eye.style.display="block";
+            }else{
+                x.type="password";
+                show_eye.style.display="block";
+                hide_eye.style.display="none";
+            }
+        }
+    </script>
 </head>
 <body>
 <?php
@@ -96,10 +114,16 @@ if(isset($_SESSION["id"])){
                             <input type="text" class="form-control" name="login" required>
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    <div class="row mb-3 ">
                         <label class="col-md-3 col-form-label">รหัสผ่าน :</label>
                         <div class="col-md-9">
-                            <input type="password" class="form-control"  name="pwd" required>
+                            <div class="input-group">
+                                <input type="password" class="form-control"  name="pwd" required id="password">
+                                <span class="input-group-text " onclick="password_show_hide();">
+                                    <i class="bi bi-eye-fill" id="show_eye"></i>
+                                    <i class="bi bi-eye-slash-fill d-none" id="hide_eye"></i>
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="row mb-3">

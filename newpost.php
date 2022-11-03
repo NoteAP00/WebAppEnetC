@@ -48,7 +48,7 @@ if(!isset($_SESSION["id"])){
 </table>
 <h3><a href="index.php">กลับไปหน้าหลัก</a></h3></center>
 -->
-<section class="col-md-5 mx-auto">
+<section class="col-md-5 mx-auto m-3">
 <div class="card text-dark bg-white border-info">
     <div class="card-header bg-info text-ehite">
         ตั้งกระทู้ใหม่        
