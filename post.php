@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +23,7 @@
 <?php
         include "nav.php"; 
     ?>    
-<center>
+<section class="col-md-5 mx-auto m-3">
     <?php
     isset($_GET['id']) ? $id= $_GET['id'] : header("Location: index.php");
     echo "<center>ต้องการดูกระทู้หมายเลข $id <br>";
@@ -31,11 +34,58 @@
         echo "เป็นกระทู้หมายเลขคี่</center><br>";
     }
     ?>
+
+    <?php 
+        $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+        $sql = "SELECT c.* , u.name FROM comment c , user u WHERE c.user_id = u.id AND c.post_id = $id;";
+        $data = $conn->query("SELECT p.id,p.title,p.content,p.post_date ,c.name,u.name FROM post p , user u , category c WHERE p.id = $id AND p.user_ID = u.id;");
+        ?>
+        <div class="card text-dark bg-white border-primary mb-3">
+            <?php $row = $data->fetch(); ?>
+                        <div class="card-header bg-primary text-white"><?= $row['1']; ?></div>
+                            <div class="card-body pb-1">
+                            
+                                <div class="container row mb-3 justify-content-between">
+                                    
+                                        <?= $row['2']; ?> <br><br>
+                                        <?= $row['5'] . " - " . $row['3']; ?>
+                                    
+                                </div>
+                            </div>
+                        </div>
+        <?php
+        $result=$conn->query($sql);
+        $i = 0;
+            foreach($conn->query($sql) as $row){
+                $i++;
+                ?>
+                <div class="card text-dark bg-white border-info mb-3">
+                     <div class="card-header bg-info text-white"><?= " ความคิดเห็นที่ ".$i; ?></div>
+                            <div class="card-body pb-1">
+                            
+                                <div class="container row mb-3 justify-content-between">
+                                    
+                                        <?= $row['1']; ?> <br><br>
+                                        <?= $row['5'] . " - " . $row['2']; ?>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                <?php
+            
+                            
+            }
+        $conn = null;
+    ?>
+<?php
+    if(isset($_SESSION["id"])){ 
+        
+    ?>
     <div class="card text-dark bg-white border-success">
         <div class="card-header bg-success text-white">แสดงความคิดเห็น</div>
         <div class="card-body">
             <form action="post_save.php" method="post">
-                <input type="hidden" name="post_id" value="<? $_GET['id'] ?>">
+                <input type="hidden" name="post_id" value="<?= $id; ?>">
                 <div class="row mb-3 justify-content-center">
                     <div class="col-lg-10">
                         <textarea name="comment" class="form-control" rows="8"></textarea>
@@ -54,7 +104,12 @@
             </form>
         </div>
     </div>
-    </center>
+    <?php
+    }
+        
+    ?>
+
+</section> 
 </div>
 
 
