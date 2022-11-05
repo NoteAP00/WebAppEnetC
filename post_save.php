@@ -8,4 +8,6 @@
                                 ('$comment',NOW(),'$user_id','$post_id')";
     $conn->exec($sql);
     header("location: post.php?id=$post_id");
+    $conn = null;
+    die();
 ?>

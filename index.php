@@ -1,5 +1,11 @@
 <?php
 session_start();
+if(!isset($_GET['id'])){
+    header("Location: index.php?id=0");
+}
+else{
+    $id= $_GET['id'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,14 +54,23 @@ session_start();
         
     -->
   <br>
+  <?php
+    $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+    $sql = "SELECT * FROM category";
+    
+  ?>
   <div class="d-flex">
         <div class="input-group">
             <label>หมวดหมู่ : </label>
             <span class="dropdown">
-                 <button class="btn btn-light dropdown-toggle btn-sm"
-                        type="button" id="button2" data-bs-toggle="dropdown"\
+            <button class="btn btn-light dropdown-toggle btn-sm "
+                        type="button" id="button2" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        --ทั้งหมด--
+                        <?php
+                        foreach($conn->query("SELECT name FROM category WHERE id = $id") as $row){
+                            echo $row['0'];
+                        }
+                        ?>
                 </button>
                 <!-- <ul class="dropdown-menu" aria-labelledby="button2">
                     <li><a href="#" class="dropdown-item">ทั้งหมด</a></li>
@@ -64,10 +79,10 @@ session_start();
                 -->
                 <ul class="dropdown-menu" aria-labelledby="button2">
                 <?php
-                            $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
-                            $sql = "SELECT * FROM category";
+                            
+                            
                             foreach($conn->query($sql) as $row){
-                                echo "<li><a href=# class='dropdown-item' value=".$row['id'].">".$row['name']."</a></li>";
+                                echo "<li><a href=\"index.php?id=".$row['0']."\" class='dropdown-item' value=".$row['id'].">".$row['name']."</a></li>";
                             }
                             $conn = null;
                         ?>
@@ -81,7 +96,11 @@ session_start();
         <?php
         $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
         $conn -> exec("SET CHARACTER SET utf8");
-        $data = $conn->query("SELECT p.id,p.title,p.content,p.post_date ,c.name,u.name FROM post p , user u , category c WHERE p.cat_id = c.id AND p.user_id = u.id order by p.id DESC;");
+        if($id != 0){
+            $data = $conn->query("SELECT p.id,p.title,p.content,p.post_date ,c.name,u.name FROM post p , user u , category c WHERE p.cat_id = c.id AND c.id = $id AND p.user_id = u.id order by p.id DESC;");
+        }else{
+            $data = $conn->query("SELECT p.id,p.title,p.content,p.post_date ,c.name,u.name FROM post p , user u , category c WHERE p.cat_id = c.id AND p.user_id = u.id order by p.id DESC;");
+        }
         if($data !== false){
             while($row = $data->fetch()){
                // echo "<tr><td><a href=\"post.php?id=".$row['0'].'\" style=text-decoration:none></a>"; 
@@ -130,16 +149,21 @@ session_start();
             <label class="form-lable">หมวดหมู่</label>
             <span class="dropdown">
                 <button class="btn btn-light dropdown-toggle btn-sm "
-                        type="button" id="button2" data-bs-toggle="dropdown"\
+                        type="button" id="button2" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        --ทั้งหมด--
+                        <?php
+                        $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+                        foreach($conn->query("SELECT name FROM category WHERE id = $id") as $row){
+                            echo $row['0'];
+                        }
+                        ?>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="button2">
                 <?php
-                            $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+                            
                             $sql = "SELECT * FROM category";
                             foreach($conn->query($sql) as $row){
-                                echo "<li><a href=# class='dropdown-item' value=" . $row['id'] . ">" . $row['name']."</a></li>";
+                                echo "<li><a href=\"index.php?id=".$row['0']."\" class='dropdown-item' value=" . $row['id'] . ">" . $row['name']."</a></li>";
                             }
                             $conn = null;
                         ?>
@@ -159,7 +183,12 @@ session_start();
   <?php
         $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
         $conn -> exec("SET CHARACTER SET utf8");
-        $data = $conn->query("SELECT p.id,p.title,p.content,p.post_date ,c.name,u.name FROM post p , user u , category c WHERE p.cat_id = c.id AND p.user_id = u.id order by p.id DESC;");
+        if($id != 0){
+            $data = $conn->query("SELECT p.id,p.title,p.content,p.post_date ,c.name,u.name FROM post p , user u , category c WHERE p.cat_id = c.id AND c.id = $id AND p.user_id = u.id order by p.id DESC;");
+        }else{
+            $data = $conn->query("SELECT p.id,p.title,p.content,p.post_date ,c.name,u.name FROM post p , user u , category c WHERE p.cat_id = c.id AND p.user_id = u.id order by p.id DESC;");
+        }
+        
         if($data !== false){
             while($row = $data->fetch()){
                // echo "<tr><td><a href=\"post.php?id=".$row['0'].'\" style=text-decoration:none></a>"; 
