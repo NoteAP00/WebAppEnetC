@@ -67,8 +67,13 @@ else{
                         type="button" id="button2" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <?php
-                        foreach($conn->query("SELECT name FROM category WHERE id = $id") as $row){
-                            echo $row['0'];
+                        if($id != 0)
+                            foreach($conn->query("SELECT name FROM category WHERE id = $id") as $row){
+                                echo $row['0'];
+                            }
+                        else{
+                            echo '---ทั้งหมด---';
+                            
                         }
                         ?>
                 </button>
@@ -78,9 +83,10 @@ else{
                     <li><a href="#" class="dropdown-item">เรื่องร้องเรียน</a></li> 
                 -->
                 <ul class="dropdown-menu" aria-labelledby="button2">
+                
                 <?php
                             
-                            
+                            echo "<li><a href=\"index.php?id=0\" class='dropdown-item' value=0 > ---ทั้งหมด---</a></li>";
                             foreach($conn->query($sql) as $row){
                                 echo "<li><a href=\"index.php?id=".$row['0']."\" class='dropdown-item' value=".$row['id'].">".$row['name']."</a></li>";
                             }
@@ -153,15 +159,21 @@ else{
                         aria-expanded="false">
                         <?php
                         $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+                        if($id != 0)
                         foreach($conn->query("SELECT name FROM category WHERE id = $id") as $row){
                             echo $row['0'];
                         }
+                    else{
+                        echo '---ทั้งหมด---';
+                        
+                    }
                         ?>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="button2">
                 <?php
                             
                             $sql = "SELECT * FROM category";
+                            echo "<li><a href=\"index.php?id=0\" class='dropdown-item' value=0 > ---ทั้งหมด---</a></li>";
                             foreach($conn->query($sql) as $row){
                                 echo "<li><a href=\"index.php?id=".$row['0']."\" class='dropdown-item' value=" . $row['id'] . ">" . $row['name']."</a></li>";
                             }
