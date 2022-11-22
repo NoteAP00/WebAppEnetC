@@ -22,7 +22,7 @@ else{
     
     <title>Homepage</title>
     
-
+              
     <script>
         function myFunction1(){
             let r = confirm("ต้องการจะลบจริงหรือไม่");
@@ -37,7 +37,7 @@ else{
     ?>
 <body>
 <div class="container"><!-- ทั้งหน้าจะมีการเว้นซ้ายขวา -->
-    <h1 style="text-align:center">Webboard KakKak</h1>
+    <h1 class="text-center">Webboard KakKak</h1>
     
     <?php
         include "nav.php"; 
@@ -125,6 +125,7 @@ else{
         }*/
         $conn = null;
         ?>
+       
 </table>    
     </div>   
 </body>
@@ -181,6 +182,7 @@ else{
                         ?>
                 </ul>
             </span>
+            <a href="testindex.php" class="btn btn-info btn-outline-danger">New</a>
         </div>
         <div class="flex-shrink-0">
             <a  class="btn btn-success bi bi-plus" href="newpost.php" >สร้างกระทู้ใหม่</a>
