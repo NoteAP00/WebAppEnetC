@@ -17,7 +17,7 @@ session_start();
     <title>Post</title>
 </head>
 <body>
-<div class="container">
+<div class="container-xxl">
 <h1 style="text-align:center">Webboard KakKak</h1>
 
 <?php
@@ -42,7 +42,8 @@ session_start();
         ?>
         <div class="card text-dark bg-white border-primary mb-3">
             <?php $row = $data->fetch(); ?>
-                        <div class="card-header bg-primary text-white"><?= $row['1']; ?></div>
+                        <!-- <div class="card-header bg-primary text-white"></div> -->
+                         <div class="card-header alert alert-primary"><strong><?=   $row['1']; ?></strong></div> 
                             <div class="card-body pb-1">
                             
                                 <div class="container row mb-3 justify-content-between">
@@ -56,7 +57,7 @@ session_start();
         <?php
         $result=$conn->query($sql);
         $i = 0;
-            foreach($conn->query($sql) as $row){
+            foreach($result as $row){
                 $i++;
                 ?>
                 <div class="card text-dark bg-white border-info mb-3">
