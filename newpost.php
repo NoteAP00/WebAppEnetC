@@ -30,7 +30,7 @@ session_start();
 <tr><td>ผู้ใช้ : </td><td><div style="float:left"> 
 -->
 <?php
-if(!isset($_SESSION["id"])){
+if(false){
     header("Location: index.php");
 }
 //echo  $_SESSION["username"] . "</div></td></tr>";
