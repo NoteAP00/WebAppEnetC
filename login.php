@@ -70,7 +70,7 @@ if(isset($_SESSION["id"])){
     </table>  
     -->
    <?php
-        if(isset($_SESSION["error"]) == "err1"){
+        if(isset($_SESSION["error"]) == 1){
    ?>
     <div class="row">
         <div class="col-md-4"></div>
